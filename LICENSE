@@ -1,3 +1,5 @@
+# File OManager License
+
 MIT License
 
 Copyright (c) 2024 IgorGoP
@@ -11,6 +13,14 @@ furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
+**Additional Terms for Commercial Use, Donations, and Revenue Sharing**:
+
+- **Free and Paid Versions**: The software includes both a free version with basic features and a paid version with advanced features and dedicated support. Any commercial use of the software beyond the free version must include a **revenue sharing** of 25% of the profits obtained from using or modifying the software for commercial purposes.
+  
+- **Acceptance of Donations**: Donations are accepted to support the ongoing development and evolution of the project. Voluntary contributions will help maintain the sustainability of the project.
+
+- **Revenue Sharing for Commercial Use**: Developers or companies who modify or distribute the software with commercial intent must contribute a percentage of the profits to the original author. This agreement aims to ensure fair compensation for the use of the software in commercial settings.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
