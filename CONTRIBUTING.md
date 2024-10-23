@@ -59,6 +59,8 @@ $100 MXN	Covers hosting costs and test servers. / Cubre costos de hosting y serv
 $250 MXN	Helps develop a new feature or security improvement. / Ayuda a desarrollar una nueva característica o mejora de seguridad.
 $500 MXN	Allows me to dedicate a full day to new features or performance improvements. / Permite dedicar un día completo al desarrollo de nuevas funcionalidades o mejoras de rendimiento.
 
+https://www.paypal.com/donate/?hosted_button_id=9MB8EEGCLNF22
+
 Ways to donate / Formas de donar:
 PayPal (one-time or recurring donations) / PayPal (donaciones únicas o recurrentes).
 GitHub Sponsors (for monthly support) / GitHub Sponsors (para apoyo mensual).
