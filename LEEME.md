@@ -77,9 +77,4 @@ Para preguntas o asistencia adicional, puedes contactar al creador del proyecto 
 
 El proyecto está publicado en GitHub y puedes acceder a él en el siguiente enlace: [File OManager en GitHub](https://github.com/IgorGoP/File-OManager).
 
-## Próximos Pasos
-
-- Desarrollar y probar el módulo de autenticación de usuarios.
-- Completar la documentación para la API y para cada uno de los módulos.
-- Implementar características avanzadas para la versión de pago.
 
