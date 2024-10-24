@@ -1,0 +1,161 @@
+Muchas soluciones existentes para la gestión de archivos presentan limitaciones, ya sea en términos de accesibilidad, funcionalidad o costos. File OManager busca llenar estos vacíos proporcionando una solución abierta y flexible, que no solo facilite la administración de archivos de manera eficiente y segura, sino que también permita la personalización y expansión por parte de los usuarios. Adicionalmente, ofrece una alternativa atractiva tanto para aquellos que buscan una opción gratuita como para quienes desean funcionalidades avanzadas y soporte profesional mediante un esquema comercial. A continuación, presento una estrategia detallada para iniciar el desarrollo del proyecto de forma gradual:
+
+1. Definir el Alcance del Proyecto
+
+Antes de comenzar el desarrollo, es imprescindible delinear claramente el alcance del sistema que se pretende construir:
+
+Funcionalidades Principales: Delimitar las funcionalidades básicas, tales como la carga y descarga de archivos, la gestión de directorios, el control de permisos de usuario y la interfaz web.
+
+Usuarios: Determinar los tipos de usuarios que tendrán acceso (administradores, usuarios comunes, invitados) y los permisos asociados a cada rol.
+
+Tecnologías y Herramientas: Como se busca competir con FileBrowser, se puede emplear una pila tecnológica similar. Dado el entorno (Debian, Apache, PHP, MariaDB), estas herramientas son adecuadas para la implementación.
+
+2. Investigación y Análisis del Proyecto de Referencia
+
+Es fundamental analizar cómo funciona FileBrowser, identificando sus características clave y su estructura de archivos:
+
+Descarga el código fuente de FileBrowser desde GitHub y analízalo.
+
+Examina cómo se organizan las carpetas, archivos y la documentación. Comprender esta estructura te proporcionará una base sólida para diseñar la tuya propia.
+
+3. Diseño del Sistema
+
+Arquitectura de Carpetas: Diseña una estructura similar a la de FileBrowser, separando lógicamente el backend, el frontend, configuraciones y recursos.
+
+Backend: Utilizar PHP para la lógica del servidor, organizando el código en controladores y modelos.
+
+Frontend: Utilizar HTML/CSS/JavaScript para la interfaz de usuario.
+
+Configuración: Archivos dedicados a la configuración, como .ini o .env.
+
+Documentación: Documenta desde el inicio la organización de cada parte del código.
+
+Base de Datos: Definir las tablas requeridas, tales como usuarios, archivos y permisos. MariaDB es una opción adecuada.
+
+4. Definir una Metodología de Trabajo
+
+Dado que trabajarás de forma individual, es recomendable adoptar la metodología Kanban para tener visibilidad del estado de las tareas (pendientes, en proceso, completadas). Herramientas como Trello o GitHub Projects pueden facilitar esta gestión.
+
+5. Desarrollo Incremental y Modular
+
+Módulo por Módulo: Divide el proyecto en módulos independientes que puedas desarrollar secuencialmente. Puedes comenzar con la autenticación de usuarios y luego abordar el explorador de archivos.
+
+Control de Versiones: Utiliza Git para llevar un registro del desarrollo y GitHub para facilitar la colaboración futura.
+
+6. Documentación
+
+Para que el resultado sea un manual detallado, es esencial documentar cada módulo:
+
+Comentarios en el Código: Incluir comentarios claros que expliquen la funcionalidad de cada función.
+
+Archivos de Documentación: Elaborar un archivo README para cada módulo (autenticación, permisos, etc.) explicando su funcionamiento.
+
+Manual de Usuario: Preparar un documento destinado a explicar cómo utilizar cada funcionalidad del sistema.
+
+7. Licencia del Proyecto
+
+Para definir la licencia del proyecto, recomiendo usar una combinación de la Licencia MIT con un acuerdo adicional para esquemas comerciales y donaciones. Esta licencia permite a otros usuarios reutilizar, modificar y distribuir el software sin muchas restricciones, siempre y cuando se incluya la licencia original. Además, para los usuarios que deseen utilizar el software en contextos comerciales, se podría agregar un acuerdo adicional que especifique lo siguiente:
+
+Esquemas Gratuitos y de Pago: El software tendrá una versión gratuita con funcionalidades básicas y una versión de pago con características avanzadas y soporte dedicado.
+
+Aceptación de Donaciones: Se podrán recibir donaciones de los usuarios que quieran apoyar el desarrollo del proyecto. Estas donaciones podrán incentivar a los desarrolladores a continuar con la evolución del sistema.
+
+Participación en Ingresos: Si otros desarrolladores o empresas generan ingresos derivados del uso del código, deben compartir un porcentaje de esos ingresos. Esto se podría definir como un acuerdo de revenue sharing, donde una parte de las ganancias obtenidas por comercialización o modificaciones del software se compartirá con el autor original.
+
+Esta combinación permite mantener el espíritu de colaboración del software libre, mientras que también se establece una base para la sostenibilidad económica del proyecto y la retribución justa por su uso en entornos comerciales.
+
+8. Primeras Tareas para Iniciar el Desarrollo
+
+Inicializar el Repositorio Git: Crear un repositorio en GitHub para el proyecto. A continuación, una guía paso a paso:
+
+1.1. Configurar el Archivo .gitignore: Un archivo .gitignore es crucial para evitar que archivos innecesarios o confidenciales se agreguen al repositorio. Este archivo debe ser creado en la raíz del proyecto para especificar qué archivos deben ser ignorados por Git.
+
+Crea un archivo llamado .gitignore en la raíz del proyecto.
+
+Incluye lo siguiente para evitar subir archivos de configuración sensibles y otros archivos innecesarios:
+
+# Archivos de configuración
+/config/*.env
+/config/*.ini
+
+# Archivos del sistema operativo
+*.DS_Store
+*.Thumbs.db
+
+# Archivos de logs
+/logs/*.log
+
+# Dependencias de Composer y Node
+/vendor/
+/node_modules/
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Archivos de caché
+/cache/
+
+Accede a GitHub.com y regístrate si aún no posees una cuenta.
+
+Haz clic en el botón + en la esquina superior derecha y selecciona New Repository.
+
+Asigna un nombre al repositorio, por ejemplo, File OManager.
+
+Define si deseas que sea público o privado (se recomienda público para proyectos Open Source).
+
+Añade un archivo README.md para describir brevemente el proyecto.
+
+Haz clic en Create Repository.
+
+Definir la Estructura de Carpetas: Establece la estructura de carpetas en tu servidor Debian:
+
+Conéctate al servidor Debian mediante SSH.
+
+Navega hasta la ubicación donde deseas crear el proyecto y utiliza los siguientes comandos para crear las carpetas:
+
+mkdir -p FileOManager/{backend,frontend,config,docs,public}
+
+Esta estructura inicial incluirá:
+
+/backend/ - Código PHP para manejar la lógica de servidor.
+
+/frontend/ - Código HTML, CSS y JavaScript para la interfaz.
+
+/config/ - Archivos de configuración, como .env.
+
+/docs/ - Documentación del proyecto.
+
+/public/ - Recursos públicos como imágenes, scripts o archivos accesibles directamente.
+
+Construir el Módulo de Autenticación: Desarrollar la parte del sistema que gestionará usuarios y sesiones. Puedes comenzar creando un archivo backend/auth.php que valide a los usuarios. Para ello:
+
+Define una tabla usuarios en la base de datos para almacenar la información esencial de cada usuario.
+
+Utiliza PHP para conectar con la base de datos y validar las credenciales del usuario.
+
+Diseño de la Base de Datos: Crea las tablas usuarios y permisos en MariaDB para soportar la gestión de usuarios. Conéctate a MariaDB y ejecuta los siguientes comandos:
+
+CREATE TABLE usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  contrasena VARCHAR(255) NOT NULL,
+  fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE permisos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INT,
+  permiso VARCHAR(50),
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+A medida que avances, podemos profundizar cada uno de estos puntos en mayor detalle.
+
+Próximos Pasos
+
+El proyecto está publicado en GitHub y puedes acceder a él en el siguiente enlace: File OManager en GitHub.
+
+Te sugiero comenzar creando el repositorio y organizando la estructura de carpetas del proyecto. Posteriormente, podríamos centrarnos en el desarrollo del módulo de autenticación de usuarios. ¿Te parece adecuado este plan inicial?
+
