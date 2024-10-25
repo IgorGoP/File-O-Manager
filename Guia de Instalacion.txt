@@ -1,0 +1,98 @@
+Guía de Instalación de File OManager
+
+Requisitos del Sistema
+
+Servidor Web: Se recomienda un servidor LAMP (Linux, Apache, MySQL/MariaDB, PHP).
+PHP: Versión 7.4 o superior.
+MySQL o MariaDB: Para la base de datos.
+Git (opcional): Para clonar el repositorio directamente desde GitHub.
+Paso 1: Preparar el Entorno del Servidor
+
+Instalar Apache y PHP: sudo apt update sudo apt install apache2 php libapache2-mod-php php-mysql
+
+Instalar MySQL/MariaDB: sudo apt install mariadb-server Asegúrate de configurar la base de datos con: sudo mysql_secure_installation
+
+Paso 2: Descargar el Proyecto
+
+Descargar el Proyecto:
+
+Copia el archivo fom.php a /var/www/html/.
+Copia el directorio FileOManager completo a /var/www/html/.
+Asignar Permisos: sudo chown -R www-data
+/var/www/html/FileOManager sudo chmod -R 755 /var/www/html/FileOManager
+
+Paso 3: Configurar la Base de Datos
+
+Crear la Base de Datos:
+
+Ingresa a MySQL/MariaDB: sudo mysql -u root -p
+Ejecuta los siguientes comandos para crear la base de datos y un usuario: CREATE DATABASE fileoma; CREATE USER 'adfom'@'localhost' IDENTIFIED BY '4d3f0m'; GRANT ALL PRIVILEGES ON fileoma.* TO 'adfom'@'localhost'; FLUSH PRIVILEGES;
+Importar Estructura de la Base de Datos:
+
+Si tienes un archivo .sql con la estructura, puedes importarlo así: mysql -u adfom -p fileoma < /var/www/html/FileOManager/database/estructura.sql
+Estructura de la Base de Datos
+
+La base de datos fileoma tiene las siguientes tablas:
+
+Tabla archivos:
+
+id: int(11), auto_increment, PRIMARY KEY
+nombre: varchar(255), NO NULL
+ruta: varchar(255), NO NULL
+propietario_id: int(11), permite valores nulos, FOREIGN KEY
+fecha_subida: timestamp, DEFAULT current_timestamp()
+Tabla permisos:
+
+id: int(11), auto_increment, PRIMARY KEY
+archivo_id: int(11), FOREIGN KEY
+usuario_id: int(11), FOREIGN KEY
+permiso: varchar(50), puede ser lectura o escritura
+Tabla usuarios:
+
+id: int(11), auto_increment, PRIMARY KEY
+nombre: varchar(50), NO NULL
+email: varchar(100), UNIQUE, NO NULL
+contrasena: varchar(255), NO NULL
+fecha_registro: timestamp, DEFAULT current_timestamp()
+Paso 4: Crear un Usuario de Prueba
+
+Crear un Usuario de Prueba:
+Ingresa a MySQL/MariaDB: sudo mysql -u root -p USE fileoma;
+Ejecuta el siguiente comando para crear un usuario de prueba: INSERT INTO usuarios (nombre, email, contrasena) VALUES ('develop', 'develop@test.example', PASSWORD('develop123'));
+Nota: El comando anterior usa la función PASSWORD() para crear una contraseña hasheada compatible con la seguridad establecida.
+Paso 5: Configurar el Proyecto
+
+Configurar Conexión a la Base de Datos:
+Edita el archivo de configuración en FileOManager/config/db_config.php:
+<?php define('DB_SERVER', 'localhost'); define('DB_USERNAME', 'adfom'); define('DB_PASSWORD', '4d3f0m'); define('DB_NAME', 'fileoma'); ?>
+Paso 6: Configurar Apache
+
+Crear un Virtual Host (opcional):
+Edita el archivo de configuración para el sitio: sudo nano /etc/apache2/sites-available/fileomanager.conf
+Agrega el siguiente contenido: <VirtualHost *:80> ServerAdmin webmaster@localhost DocumentRoot /var/www/html ErrorLog ${APACHE_LOG_DIR}/error.log CustomLog ${APACHE_LOG_DIR}/access.log combined </VirtualHost>
+Habilita el sitio y reinicia Apache: sudo a2ensite fileomanager.conf sudo systemctl restart apache2
+Paso 7: Pruebas y Uso
+
+Acceder al Sitio:
+
+Abre tu navegador web y navega a http://tu-servidor-ip/fom.php para acceder al formulario de inicio de sesión.
+Inicio de Sesión:
+
+Utiliza el usuario de prueba develop con contraseña develop123 para iniciar sesión.
+Si no puedes acceder con la contraseña de prueba, recuerda que en la carpeta /FileOManager/config se encuentra el archivo update_passwords.php, el cual te permite actualizar la contraseña para asegurar que puedas firmarte correctamente.
+Paso 8: Resolución de Problemas
+
+Permisos de Archivos:
+
+Si tienes problemas con la subida o eliminación de archivos, revisa los permisos del directorio uploads/: sudo chmod -R 775 /var/www/html/FileOManager/uploads
+Errores de Conexión a la Base de Datos:
+
+Verifica que la configuración en db_config.php sea correcta y que el servicio de MySQL/MariaDB esté en ejecución.
+Paso 9: Seguridad
+
+Cambiar Contraseñas:
+
+Cambia la contraseña del usuario de la base de datos por una más segura una vez que hayas verificado que todo funciona correctamente.
+Deshabilitar Errores en Producción:
+
+Edita el archivo PHP para desactivar la visualización de errores: ini_set('display_errors', 0); ini_set('display_startup_errors', 0); error_reporting(0);
