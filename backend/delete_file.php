@@ -1,6 +1,12 @@
 <?php
-if (isset($_GET['archivo'])) {
-    $archivo = $_GET['archivo'];
+session_start();
+
+header('Content-Type: application/json');
+
+$response = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['archivo'])) {
+    $archivo = $_POST['archivo'];
     $directorio = '../uploads/';
     $rutaArchivo = $directorio . $archivo;
 
@@ -8,18 +14,22 @@ if (isset($_GET['archivo'])) {
     if (file_exists($rutaArchivo)) {
         // Intentar eliminar el archivo
         if (unlink($rutaArchivo)) {
-            echo "El archivo '$archivo' ha sido eliminado correctamente.";
+            $response['status'] = 'success';
+            $response['message'] = "El archivo '$archivo' ha sido eliminado correctamente.";
         } else {
-            echo "Error: No se pudo eliminar el archivo '$archivo'.";
+            $response['status'] = 'error';
+            $response['message'] = "Error: No se pudo eliminar el archivo '$archivo'.";
         }
     } else {
-        echo "Error: El archivo '$archivo' no existe.";
+        $response['status'] = 'error';
+        $response['message'] = "Error: El archivo '$archivo' no existe.";
     }
 } else {
-    echo "Error: No se especificó ningún archivo para eliminar.";
+    $response['status'] = 'error';
+    $response['message'] = "Error: No se especificó ningún archivo para eliminar.";
 }
 
-// Agregar un enlace para regresar a la lista de archivos
-echo "<br><a href='list_files.php'>Volver a la lista de archivos</a>";
+echo json_encode($response);
+exit();
 ?>
 
