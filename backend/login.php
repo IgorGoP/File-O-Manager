@@ -1,60 +1,50 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+// Iniciar sesión y conectar a la base de datos
 session_start();
-include_once '../config/db_config.php';
+require_once('../config/db_config.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+// Verificar si se enviaron los datos del formulario
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    // Depuración para ver qué se está enviando
-    echo "Nombre de usuario recibido: " . htmlspecialchars($username) . "<br>";
+    // Preparar y ejecutar la consulta para obtener los datos del usuario
+    $query = "SELECT id, nombre, contrasena, rol FROM usuarios WHERE nombre = ?";
+    if ($stmt = $db->prepare($query)) {
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->bind_result($user_id, $nombre_usuario, $hashed_password, $user_rol);
+        if ($stmt->fetch()) {
+            // Verificar la contraseña
+            if (password_verify($password, $hashed_password)) {
+                // Almacenar datos en la sesión
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['username'] = $nombre_usuario;
+                $_SESSION['rol'] = $user_rol;
 
-    // Conexión a la base de datos
-    $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-    if ($conn->connect_error) {
-        die("Error de conexión: " . $conn->connect_error);
-    }
-
-    // Verificar el usuario
-    $sql = "SELECT * FROM usuarios WHERE nombre = ?";
-    $stmt = $conn->prepare($sql);
-
-    // Verificar si la preparación de la consulta fue exitosa
-    if ($stmt === false) {
-        die("Error al preparar la consulta: " . $conn->error);
-    }
-
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-
-        // Mostrar el hash de la contraseña que se recupera de la base de datos
-        echo "Hash de la contraseña en la base de datos: " . $row['contrasena'] . "<br>";
-
-        // Verificar la contraseña usando password_verify()
-        if (password_verify($password, $row['contrasena'])) {
-            // Inicio de sesión exitoso
-            $_SESSION['username'] = $username;
-            header("Location: ../frontend/dashboard.php");
-            exit();
+                // Redirigir al dashboard
+                header("Location: ../frontend/dashboard.php");
+                exit();
+            } else {
+                // Contraseña incorrecta
+                $_SESSION['mensaje'] = 'Contraseña incorrecta.';
+                header("Location: ../../fom.php");
+                exit();
+            }
         } else {
-            echo "Usuario o contraseña incorrectos (contraseña incorrecta).";
+            // Usuario no encontrado
+            $_SESSION['mensaje'] = 'Usuario no encontrado.';
+            header("Location: ../../fom.php");
+            exit();
         }
+        $stmt->close();
     } else {
-        // Usuario no encontrado
-        echo "Usuario o contraseña incorrectos (usuario no encontrado).";
+        die('Error al preparar la consulta.');
     }
-
-    $stmt->close();
-    $conn->close();
+} else {
+    // Si no se accedió por POST, redirigir al formulario de inicio de sesión
+    header("Location: ../../fom.php");
+    exit();
 }
 ?>
 

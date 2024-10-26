@@ -1,0 +1,280 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+    overflow-x: hidden;
+}
+
+/* Barra de navegación */
+nav {
+    background-color: #343a40;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 50px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left .avatar {
+    cursor: pointer;
+}
+
+.nav-left .avatar img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.nav-left .search-form input {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+}
+
+.nav-right a {
+    color: #ffffff;
+    padding: 15px 10px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.nav-right a:hover {
+    background-color: #495057;
+}
+
+/* Encabezado */
+header {
+    margin-top: 50px; /* Altura de la barra de navegación */
+    padding: 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container .logo {
+    max-height: 80px;
+    margin-bottom: 10px;
+}
+
+.header-container h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Contenido principal */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Formularios */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="file"] {
+    margin-bottom: 20px;
+}
+
+form button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+table th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+.button-download, .button-delete {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.button-delete {
+    background-color: #dc3545;
+}
+
+.button-cancel {
+    background-color: #6c757d;
+}
+
+.button-download:hover {
+    background-color: #0056b3;
+}
+
+.button-delete:hover {
+    background-color: #c82333;
+}
+
+.button-cancel:hover {
+    background-color: #5a6268;
+}
+
+/* Mensajes */
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    border-radius: 5px;
+}
+
+/* Modal */
+#modalEliminar {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(52, 58, 64, 0.8);
+}
+
+#modalContent {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #dee2e6;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#modalContent p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#modalContent button {
+    margin: 0 10px;
+    padding: 10px 20px;
+}
+
+/* Pie de página */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Evitar desplazamiento horizontal */
+* {
+    box-sizing: border-box;
+}
+
+/* Ajustes para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .nav-left {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .nav-right {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .nav-left .search-form {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    header {
+        margin-top: 110px; /* Ajustar según sea necesario */
+    }
+
+    main {
+        margin-top: 60px;/* Ajusta este valor según la altura de tu barra de navegación */
+        margin-bottom: 60px; /* Para evitar que el contenido quede debajo del footer fijo */
+    }
+}
+
