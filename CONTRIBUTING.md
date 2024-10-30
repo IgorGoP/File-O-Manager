@@ -21,9 +21,9 @@ Your contribution supports Open Source: By donating, you're not only supporting 
 
 How will donations be used?
 
-$100 MXN: Covers hosting costs and test servers.
-$250 MXN: Helps develop a new feature or security improvement.
-$500 MXN: Allows me to dedicate a full day to new features or performance improvements.
+$50 USD: Covers hosting costs and test servers.
+$100 USD: Helps develop a new feature or security improvement.
+$2500 USD: Allows me to dedicate a full day to new features or performance improvements.
 https://www.paypal.com/donate/?hosted_button_id=9MB8EEGCLNF22
 
 Ways to donate:
@@ -67,9 +67,9 @@ Tu contribución apoya al software libre: Al donar, no solo apoyas a File-OManag
 
 ¿Cómo se usarán las donaciones?
 
-$100 MXN: Cubre costos de hosting y servidores de pruebas.
-$250 MXN: Ayuda a desarrollar una nueva característica o mejora de seguridad.
-$500 MXN: Permite dedicar un día completo al desarrollo de nuevas funcionalidades o mejoras de rendimiento.
+$50 USD: Cubre costos de hosting y servidores de pruebas.
+$100 USD: Ayuda a desarrollar una nueva característica o mejora de seguridad.
+$200 USD: Permite dedicar un día completo al desarrollo de nuevas funcionalidades o mejoras de rendimiento.
 https://www.paypal.com/donate/?hosted_button_id=9MB8EEGCLNF22
 
 Formas de donar:
