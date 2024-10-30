@@ -1,98 +1,72 @@
-Installation Guide for File OManager
+File OManager Installation Guide
 
 System Requirements
+- Web Server: LAMP (Linux, Apache, MySQL/MariaDB, PHP).
+- PHP: Version 7.4 or higher.
+- MySQL or MariaDB: For the database.
+- Git (optional): To clone the repository from GitHub.
 
-Web Server: Recommended LAMP server (Linux, Apache, MySQL/MariaDB, PHP).
-PHP: Version 7.4 or higher.
-MySQL or MariaDB: For the database.
-Git (optional): To clone the repository from GitHub.
 Step 1: Prepare the Server Environment
+1. Install Apache and PHP:
+   sudo apt update
+   sudo apt install apache2 php libapache2-mod-php php-mysql
 
-Install Apache and PHP: sudo apt update sudo apt install apache2 php libapache2-mod-php php-mysql
-
-Install MySQL/MariaDB: sudo apt install mariadb-server Make sure to configure the database with: sudo mysql_secure_installation
+2. Install MySQL/MariaDB:
+   sudo apt install mariadb-server
+   Set up the database with:
+   sudo mysql_secure_installation
 
 Step 2: Download the Project
+1. Download the Project:
+   Download the latest release from the GitHub File-OManager repository: https://github.com/IgorGoP/File-OManager
 
-Download the Project:
+2. Unzip into the Web Directory:
+   Extract the files to /var/www/html/FileOManager/
 
-Copy the fom.php file to /var/www/html/.
-Copy the FileOManager directory to /var/www/html/.
-Set Permissions: sudo chown -R www-data
-/var/www/html/FileOManager sudo chmod -R 755 /var/www/html/FileOManager
+3. Set Permissions:
+   sudo chmod -R 775 /var/www/html/FileOManager
+   sudo chown -R www-data:www-data /var/www/html/FileOManager
 
-Step 3: Set Up the Database
+Step 3: Create the Database
+1. Access MySQL/MariaDB:
+   sudo mysql -u root -p
 
-Create the Database:
+2. Create Database and User (remember to personalize the values):
+   CREATE DATABASE your_database;
+   CREATE USER 'your_user'@'localhost' IDENTIFIED BY 'your_password';
+   GRANT ALL PRIVILEGES ON your_database.* TO 'your_user'@'localhost';
+   FLUSH PRIVILEGES;
 
-Log in to MySQL/MariaDB: sudo mysql -u root -p
-Execute the following commands to create the database and a user: CREATE DATABASE fileoma; CREATE USER 'adfom'@'localhost' IDENTIFIED BY '4d3f0m'; GRANT ALL PRIVILEGES ON fileoma.* TO 'adfom'@'localhost'; FLUSH PRIVILEGES;
-Import Database Structure:
+Step 4: Initial Configuration of File-OManager
+- Open your browser and go to:
+  http://your_ip_address/FileOManager/index.php
+- Complete the database connection details (using localhost as the server).
 
-If you have a .sql file with the structure, import it like this: mysql -u adfom -p fileoma < /var/www/html/FileOManager/database/estructura.sql
-Database Structure
+Step 5: Log In
+- Once the configuration is complete, you will be provided with a username and password to log in.
+- Access the Site:
+  Navigate to: http://your_ip_address/fom.php
 
-The database fileoma has the following tables:
+- Delete the Installation File:
+  sudo rm -r /var/www/html/FileOManager/index.php
 
-Table archivos:
+Step 6: Troubleshooting
 
-id: int(11), auto_increment, PRIMARY KEY
-nombre: varchar(255), NOT NULL
-ruta: varchar(255), NOT NULL
-propietario_id: int(11), allows NULL, FOREIGN KEY
-fecha_subida: timestamp, DEFAULT current_timestamp()
-Table permisos:
+1. File Permissions:
+   - If you have issues with uploading or deleting files, check the permissions of the uploads/ directory:
+     sudo chmod -R 775 /var/www/html/FileOManager/uploads
 
-id: int(11), auto_increment, PRIMARY KEY
-archivo_id: int(11), FOREIGN KEY
-usuario_id: int(11), FOREIGN KEY
-permiso: varchar(50), can be lectura (read) or escritura (write)
-Table usuarios:
+2. Database Connection Errors:
+   - Make sure the MySQL/MariaDB service is running:
+     sudo systemctl status mariadb
 
-id: int(11), auto_increment, PRIMARY KEY
-nombre: varchar(50), NOT NULL
-email: varchar(100), UNIQUE, NOT NULL
-contrasena: varchar(255), NOT NULL
-fecha_registro: timestamp, DEFAULT current_timestamp()
-Step 4: Create a Test User
+Step 7: Security
 
-Create a Test User:
-Log in to MySQL/MariaDB: sudo mysql -u root -p USE fileoma;
-Run the following command to create a test user: INSERT INTO usuarios (nombre, email, contrasena) VALUES ('develop', 'develop@test.example', PASSWORD('develop123'));
-Note: The above command uses the PASSWORD() function to hash the password for added security.
-Step 5: Configure the Project
+1. Change Passwords:
+   - Change the database user's password to a more secure one once you verify everything is working correctly.
 
-Configure Database Connection:
-Edit the configuration file at FileOManager/config/db_config.php:
-<?php define('DB_SERVER', 'localhost'); define('DB_USERNAME', 'adfom'); define('DB_PASSWORD', '4d3f0m'); define('DB_NAME', 'fileoma'); ?>
-Step 6: Configure Apache
-
-Create a Virtual Host (optional):
-Edit the configuration file for the site: sudo nano /etc/apache2/sites-available/fileomanager.conf
-Add the following content: <VirtualHost *:80> ServerAdmin webmaster@localhost DocumentRoot /var/www/html ErrorLog ${APACHE_LOG_DIR}/error.log CustomLog ${APACHE_LOG_DIR}/access.log combined </VirtualHost>
-Enable the site and restart Apache: sudo a2ensite fileomanager.conf sudo systemctl restart apache2
-Step 7: Testing and Usage
-
-Access the Site:
-
-Open your web browser and navigate to http://your-server-ip/fom.php to access the login form.
-Log In:
-
-Use the test user develop with password develop123 to log in.
-If you cannot access the test account, remember that you can update the password using the file /FileOManager/config/update_passwords.php to ensure proper login.
-Step 8: Troubleshooting
-
-File Permissions:
-
-If you have problems uploading or deleting files, check the permissions of the uploads/ directory: sudo chmod -R 775 /var/www/html/FileOManager/uploads
-Database Connection Errors:
-
-Make sure that the configuration in db_config.php is correct and that the MySQL/MariaDB service is running.
-Step 9: Security
-
-Change Passwords:
-
-Change the password of the database user to a more secure one after confirming everything works properly.
-Disable Errors in Production:
-
-Edit the PHP file to disable error display: ini_set('display_errors', 0); ini_set('display_startup_errors', 0); error_reporting(0);
+2. Disable Errors in Production:
+   - Edit the PHP configuration file to disable error display:
+     ini_set('display_errors', 0);
+     ini_set('display_startup_errors', 0);
+     error_reporting(0);
