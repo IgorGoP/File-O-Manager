@@ -16,7 +16,7 @@ if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
 
     // Mover el archivo al directorio de destino
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaDestino)) {
-        $_SESSION['mensaje'] = "El archivo se ha subido exitosamente.";
+//        $_SESSION['mensaje'] = "El archivo se ha subido exitosamente.";
     } else {
         $_SESSION['mensaje'] = "Hubo un error al subir el archivo.";
     }
@@ -24,7 +24,7 @@ if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
     $_SESSION['mensaje'] = "No se ha seleccionado ningún archivo o hubo un error al subirlo.";
 }
 
-header("Location: ../frontend/dashboard.php");
+header("Location: ../dashboard.php");
 exit();
 ?>
 

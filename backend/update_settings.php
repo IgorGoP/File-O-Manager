@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../../fom.php");
     exit();
 }
 
@@ -10,151 +9,118 @@ require_once('../config/db_config.php');
 $user_id = $_SESSION['user_id'];
 $user_rol = $_SESSION['rol'];
 
-// Obtener los datos del formulario
-$current_password = $_POST['current_password'] ?? '';
-$new_password = $_POST['new_password'] ?? '';
-$confirm_password = $_POST['confirm_password'] ?? '';
-$language = $_POST['language'] ?? 'es';
-$avatar = $_FILES['avatar'] ?? null;
-$avatar_selection = $_POST['avatar_selection'] ?? '';
-$logo = $_FILES['logo'] ?? null;
-$logo_selection = $_POST['logo_selection'] ?? '';
-$language_file = $_FILES['language_file'] ?? null;
+// Establece el encabezado de tipo de contenido para devolver JSON
+header('Content-Type: application/json');
 
-// 1. Procesar la actualización del logo si el usuario es admin o superadmin
-if (($user_rol == 'admin' || $user_rol == 'superadmin') && ($logo || $logo_selection)) {
-    $logo_dir = '../public/logo/';
+// Verifica si se recibió una acción
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
 
-    // Procesar la subida del nuevo logo
-    if ($logo && $logo['error'] == 0) {
-        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-        if (in_array($logo['type'], $allowed_types)) {
-            $ext = pathinfo($logo['name'], PATHINFO_EXTENSION);
-            $logo_name = 'Logo_Default.' . $ext;
-            $logo_path = $logo_dir . $logo_name;
-            move_uploaded_file($logo['tmp_name'], $logo_path);
-            $_SESSION['mensaje'] = 'Logo actualizado exitosamente.';
-        } else {
-            $_SESSION['mensaje'] = 'Tipo de archivo no permitido para el logo.';
-        }
-    } elseif ($logo_selection) {
-        // Procesar la selección de un logo existente
-        $selected_logo = basename($logo_selection);
-        $logo_source = $logo_dir . $selected_logo;
-        $logo_destination = $logo_dir . 'Logo_Default.jpg';
+    // Cambiar idioma
+    if ($action == 'save_language' && isset($_POST['language'])) {
+        $language = $_POST['language'];
+        $query = "UPDATE usuarios SET idioma = ? WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("si", $language, $user_id);
+        $stmt->execute();
+        $stmt->close();
 
-        if (file_exists($logo_source)) {
-            copy($logo_source, $logo_destination);
-            $_SESSION['mensaje'] = 'Logo actualizado exitosamente.';
-        } else {
-            $_SESSION['mensaje'] = 'El logo seleccionado no existe.';
-        }
+        echo json_encode(['success' => true]);
+        exit();
     }
-}
 
-// 2. Cambiar contraseña
-if (!empty($current_password) && !empty($new_password) && !empty($confirm_password)) {
-    if ($new_password === $confirm_password) {
-        // Verificar la contraseña actual
-        $query = "SELECT contrasena FROM usuarios WHERE id = ?";
-        if ($stmt = $db->prepare($query)) {
-            $stmt->bind_param("i", $user_id);
-            $stmt->execute();
-            $stmt->bind_result($hashed_password);
-            $stmt->fetch();
-            $stmt->close();
+    // Cambiar avatar
+    elseif ($action == 'save_avatar') {
+        $avatar = null;
 
-            if (password_verify($current_password, $hashed_password)) {
-                // Actualizar la contraseña
-                $new_hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
-                $update_query = "UPDATE usuarios SET contrasena = ? WHERE id = ?";
-                if ($update_stmt = $db->prepare($update_query)) {
-                    $update_stmt->bind_param("si", $new_hashed_password, $user_id);
-                    $update_stmt->execute();
-                    $update_stmt->close();
-                    $_SESSION['mensaje'] = 'Contraseña actualizada exitosamente.';
-                }
-            } else {
-                $_SESSION['mensaje'] = 'La contraseña actual es incorrecta.';
+        // Verifica si se seleccionó un avatar predeterminado
+        if (!empty($_POST['avatar_selection'])) {
+            $avatar = $_POST['avatar_selection'];
+        }
+        // Maneja la carga de un archivo de avatar personalizado
+        elseif (!empty($_FILES['avatar']['name'])) {
+            $target_dir = "../public/avatars/";
+            $avatar_filename = basename($_FILES["avatar"]["name"]);
+            $target_file = $target_dir . $avatar_filename;
+
+            if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+                $avatar = $avatar_filename;
             }
         }
-    } else {
-        $_SESSION['mensaje'] = 'Las nuevas contraseñas no coinciden.';
-    }
-}
 
-// 3. Actualizar avatar
-$avatar_dir = '../public/avatars/';
-if ($avatar && $avatar['error'] == 0) {
-    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-    if (in_array($avatar['type'], $allowed_types)) {
-        $ext = pathinfo($avatar['name'], PATHINFO_EXTENSION);
-        $avatar_name = 'avatar_' . $user_id . '.' . $ext;
-        $avatar_path = $avatar_dir . $avatar_name;
-        move_uploaded_file($avatar['tmp_name'], $avatar_path);
+        // Si se ha establecido un avatar, actualiza la base de datos
+        if ($avatar) {
+            $query = "UPDATE usuarios SET avatar = ? WHERE id = ?";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param("si", $avatar, $user_id);
+            $stmt->execute();
+            $stmt->close();
 
-        // Actualizar la ruta del avatar en la base de datos
-        $avatar_db_path = 'public/avatars/' . $avatar_name;
-        $update_query = "UPDATE usuarios SET avatar = ? WHERE id = ?";
-        if ($update_stmt = $db->prepare($update_query)) {
-            $update_stmt->bind_param("si", $avatar_db_path, $user_id);
-            $update_stmt->execute();
-            $update_stmt->close();
-            $_SESSION['mensaje'] = 'Avatar actualizado exitosamente.';
+            $avatar_url = '/FileOManager/public/avatars/' . rawurlencode($avatar);
+            echo json_encode(['success' => true, 'avatar_url' => $avatar_url]);
+        } else {
+            echo json_encode(['success' => true]);
         }
-    } else {
-        $_SESSION['mensaje'] = 'Tipo de archivo no permitido para el avatar.';
+        exit();
     }
-} elseif ($avatar_selection) {
-    // Procesar la selección de un avatar existente
-    $selected_avatar = basename($avatar_selection);
-    $avatar_source = $avatar_dir . $selected_avatar;
 
-    if (file_exists($avatar_source)) {
-        $avatar_destination = $avatar_dir . 'avatar_' . $user_id . '.' . pathinfo($selected_avatar, PATHINFO_EXTENSION);
-        copy($avatar_source, $avatar_destination);
+    // Cambiar configuración del usuario
+    elseif ($action == 'save_user_settings') {
+        // Obtener los datos del formulario
+        $nom_completo = $_POST['nom_completo'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $rol = $_POST['rol'] ?? '';
+        $language = $_POST['language'] ?? '';
 
-        // Actualizar la ruta del avatar en la base de datos
-        $avatar_db_path = 'public/avatars/' . basename($avatar_destination);
-        $update_query = "UPDATE usuarios SET avatar = ? WHERE id = ?";
-        if ($update_stmt = $db->prepare($update_query)) {
-            $update_stmt->bind_param("si", $avatar_db_path, $user_id);
-            $update_stmt->execute();
-            $update_stmt->close();
-            $_SESSION['mensaje'] = 'Avatar actualizado exitosamente.';
+        // Actualizar en la base de datos
+        $query = "UPDATE usuarios SET nom_completo = ?, email = ?, rol = ?, idioma = ? WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("ssssi", $nom_completo, $email, $rol, $language, $user_id);
+        $stmt->execute();
+        $stmt->close();
+
+        echo json_encode(['success' => true]);
+        exit();
+    }
+
+    // Cambiar logo de la empresa (solo para admin o superadmin)
+    elseif ($action == 'save_logo' && in_array($user_rol, ['admin', 'superadmin'])) {
+        $logo = null;
+
+        // Verifica si se seleccionó un logo predeterminado
+        if (!empty($_POST['logo_selection'])) {
+            $logo = $_POST['logo_selection'];
         }
-    } else {
-        $_SESSION['mensaje'] = 'El avatar seleccionado no existe.';
+        // Maneja la carga de un archivo de logo personalizado
+        elseif (!empty($_FILES['logo']['name'])) {
+            $target_dir = "../public/logo/";
+            $logo_filename = basename($_FILES["logo"]["name"]);
+            $target_file = $target_dir . $logo_filename;
+
+            if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
+                $logo = $logo_filename;
+            }
+        }
+
+        // Si se ha establecido un logo, actualiza la base de datos
+        if ($logo) {
+            $query = "UPDATE config SET setting_value = ? WHERE setting_name = 'company_logo'";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param("s", $logo);
+            $stmt->execute();
+            $stmt->close();
+
+            $logo_url = '/FileOManager/public/logo/' . rawurlencode($logo);
+            echo json_encode(['success' => true, 'logo_url' => $logo_url]);
+        } else {
+            echo json_encode(['success' => true]);
+        }
+        exit();
     }
 }
 
-// 4. Actualizar idioma
-if ($language) {
-    $update_query = "UPDATE usuarios SET idioma = ? WHERE id = ?";
-    if ($update_stmt = $db->prepare($update_query)) {
-        $update_stmt->bind_param("si", $language, $user_id);
-        $update_stmt->execute();
-        $update_stmt->close();
-        $_SESSION['language'] = $language; // Actualizar en la sesión
-        $_SESSION['mensaje'] = 'Idioma actualizado exitosamente.';
-    }
-}
-
-// Procesar la subida de un nuevo archivo de idioma
-if ($language_file && $language_file['error'] == 0) {
-    $language_dir = '../languages/';
-    $language_filename = basename($language_file['name']);
-
-    if (preg_match('/^lang_\w+\.php$/', $language_filename)) {
-        $language_path = $language_dir . $language_filename;
-        move_uploaded_file($language_file['tmp_name'], $language_path);
-        $_SESSION['mensaje'] = 'Archivo de idioma subido exitosamente.';
-    } else {
-        $_SESSION['mensaje'] = 'Nombre de archivo de idioma no válido.';
-    }
-}
-
-header("Location: ../frontend/settings.php");
+// Si no se recibe una acción válida, devuelve un éxito genérico
+echo json_encode(['success' => true]);
 exit();
 ?>
 

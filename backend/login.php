@@ -3,6 +3,9 @@
 session_start();
 require_once('../config/db_config.php');
 
+// Configurar la cabecera para devolver JSON
+header('Content-Type: application/json');
+
 // Verificar si se enviaron los datos del formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'] ?? '';
@@ -14,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->bind_result($user_id, $nombre_usuario, $hashed_password, $user_rol);
+        
         if ($stmt->fetch()) {
             // Verificar la contraseña
             if (password_verify($password, $hashed_password)) {
@@ -22,29 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['username'] = $nombre_usuario;
                 $_SESSION['rol'] = $user_rol;
 
-                // Redirigir al dashboard
-                header("Location: ../frontend/dashboard.php");
-                exit();
+                // Devolver una respuesta de éxito en JSON
+                echo json_encode(["status" => "success"]);
             } else {
                 // Contraseña incorrecta
-                $_SESSION['mensaje'] = 'Contraseña incorrecta.';
-                header("Location: ../../fom.php");
-                exit();
+                echo json_encode(["status" => "error", "message" => "Contraseña incorrecta."]);
             }
         } else {
             // Usuario no encontrado
-            $_SESSION['mensaje'] = 'Usuario no encontrado.';
-            header("Location: ../../fom.php");
-            exit();
+            echo json_encode(["status" => "error", "message" => "Usuario no encontrado."]);
         }
         $stmt->close();
     } else {
-        die('Error al preparar la consulta.');
+        // Error al preparar la consulta
+        echo json_encode(["status" => "error", "message" => "Error en el servidor."]);
     }
 } else {
-    // Si no se accedió por POST, redirigir al formulario de inicio de sesión
-    header("Location: ../../fom.php");
-    exit();
+    // Si no se accedió por POST, devolver un error
+    echo json_encode(["status" => "error", "message" => "Método no permitido."]);
 }
 ?>
 

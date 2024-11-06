@@ -9,7 +9,6 @@ $db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Verificar conexión
 if ($db->connect_error) {
-    die("Error de conexión: " . $db->connect_error);
+    die('Error de conexión: ' . $db->connect_error);
 }
 ?>
-

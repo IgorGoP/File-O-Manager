@@ -1,0 +1,130 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    overflow: hidden;
+}
+
+/* Contenedor principal para centrar el contenido */
+#loginPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+#loginPageContainer h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #343a40;
+}
+
+/* Contenedor para el logo y el formulario */
+#loginContent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Contenedor del logo */
+#logoContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logoContainer img {
+    width: 150px;
+    height: auto;
+}
+
+/* Contenedor del formulario */
+#formContainer {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+}
+
+#formContainer form {
+    text-align: left;
+}
+
+#formContainer label {
+    font-weight: bold;
+    color: #343a40;
+}
+
+#formContainer input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+#formContainer button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#formContainer button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo del enlace de registro */
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    #loginContent {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #logoContainer, #formContainer {
+        max-width: 80%;
+    }
+
+    #logoContainer img {
+        width: 120px;
+    }
+}
+

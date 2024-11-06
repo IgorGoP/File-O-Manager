@@ -15,7 +15,7 @@ nav {
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 50px;
+    height: 55px;
 }
 
 .nav-container {
@@ -29,8 +29,12 @@ nav {
 .nav-left {
     display: flex;
     align-items: center;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
+/* Avatar */
 .nav-left .avatar {
     cursor: pointer;
 }
@@ -42,47 +46,27 @@ nav {
     margin-right: 15px;
 }
 
+/* Ajuste del campo de búsqueda */
+.nav-left .search-form {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    margin: 0;
+}
+
 .nav-left .search-form input {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
     padding: 5px 10px;
     font-size: 14px;
-    border: none;
     border-radius: 3px;
-}
-
-.nav-right a {
+    width: 150px;
+    max-width: 100%;
+    box-sizing: border-box;
     color: #ffffff;
-    padding: 15px 10px;
-    text-decoration: none;
-    margin-left: 10px;
-}
-
-.nav-right a:hover {
-    background-color: #495057;
-}
-
-/* Encabezado */
-header {
-    margin-top: 50px; /* Altura de la barra de navegación */
-    padding: 20px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #dee2e6;
-    text-align: center;
-}
-
-.header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.header-container .logo {
-    max-height: 80px;
-    margin-bottom: 10px;
-}
-
-.header-container h1 {
-    font-size: 28px;
-    margin: 0;
+    outline: none;
 }
 
 /* Contenido principal */
@@ -90,6 +74,9 @@ main {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    padding-top: 70px;
+    margin-left: 150px;
+    padding-right: 20px;
 }
 
 section {
@@ -152,6 +139,7 @@ table th {
     font-weight: bold;
 }
 
+/* Botones */
 .button-download, .button-delete {
     background-color: #007bff;
     color: #ffffff;
@@ -227,15 +215,86 @@ table th {
     padding: 10px 20px;
 }
 
-/* Pie de página */
-footer {
-    background-color: #ffffff;
-    border-top: 1px solid #dee2e6;
-    text-align: center;
-    padding: 15px;
-    width: 100%;
+/* Sidebar reducido con pie de página en la parte inferior */
+.sidebar {
     position: fixed;
-    bottom: 0;
+    top: 50px;
+    left: 0;
+    width: 150px;
+    height: calc(100% - 50px);
+    background-color: #343a40;
+    padding-top: 20px;
+    color: #ffffff;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilos de la lista en el sidebar */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar ul li button {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li button:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+/* Pie de página dentro del sidebar */
+.sidebar footer {
+    background-color: #343a40;
+    text-align: center;
+    color: #6c757d;
+    font-size: 12px;
+    padding: 10px;
+    border-top: 1px solid #495057;
+}
+
+/* Estilo para el botón de subir archivo en el sidebar */
+.upload-form {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.upload-button {
+    display: block;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+    width: 100%;
+    font-weight: normal; /* Quita el estilo en negrita */
+}
+
+.upload-button:hover {
+    background-color: #495057;
+    border-radius: 5px;
 }
 
 /* Evitar desplazamiento horizontal */
@@ -269,12 +328,44 @@ footer {
     }
 
     header {
-        margin-top: 110px; /* Ajustar según sea necesario */
+        margin-top: 110px;
     }
 
     main {
-        margin-top: 60px;/* Ajusta este valor según la altura de tu barra de navegación */
-        margin-bottom: 60px; /* Para evitar que el contenido quede debajo del footer fijo */
+        padding-top: 70px;
+        margin-bottom: 60px;
+        margin-left: 150px;
+    }
+
+    .sidebar {
+        width: 120px;
     }
 }
 
+/* Estilo para el botón de configuración en la barra de navegación */
+.nav-button {
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+/* Avatar */
+.avatar-container {
+    display: inline-block;
+}
+
+.avatar {
+    height: 35px; /* Ajuste de tamaño */
+    width: 35px; /* Ajuste de tamaño */
+    border-radius: 50%;
+    cursor: pointer;
+}

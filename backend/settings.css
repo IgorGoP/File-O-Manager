@@ -1,0 +1,10 @@
+input[readonly], select[disabled] {
+    background-color: #f3f3f3;
+    color: #666;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin: 5px;
+}
+

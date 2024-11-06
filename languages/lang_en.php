@@ -1,15 +1,50 @@
 <?php
+// languages/lang_en.php
+
 return [
-    'welcome_message' => 'Welcome to the File OManager Dashboard, ',
+    // General
+    'dashboard' => 'Dashboard',
+    'search_placeholder' => 'Search...',
     'settings' => 'Settings',
     'logout' => 'Logout',
-    'upload_file' => 'Upload a File',
-    'select_file' => 'Select a file:',
-    'uploaded_files' => 'Uploaded Files',
-    'delete_confirmation' => 'Are you sure you want to delete this file?',
+    'create_folder' => 'Create Folder',
+    'create_file' => 'Create File',
+    'upload_file' => 'Upload File',
+    'file_name' => 'Name',
+    'type' => 'Type',
+    'actions' => 'Actions',
+    'file' => 'File',
+    'folder' => 'Folder',
+    'unknown' => 'Unknown',
+    'download' => 'Download',
     'delete' => 'Delete',
-    'error_open_directory' => 'Error: Could not open the file directory.',
-    'error_directory_not_exist' => 'Error: The file directory does not exist.',
-    'upload_button' => 'Upload File',
+    'error_loading_files' => 'Error loading files.',
+    'error_directory_not_exist' => 'The directory does not exist.',
+    'delete_confirmation' => 'Are you sure you want to delete this item?',
+    'delete_confirmation_detail' => 'This action cannot be undone.',
+    'confirm' => 'Confirm',
+    'cancel' => 'Cancel',
+    'back_to_dashboard' => 'Back to Dashboard',
+    'avatar' => 'Avatar',
+    'error_loading_settings' => 'Error loading settings.',
+
+    // Creación
+    'success_create_folder' => 'Folder created successfully.',
+    'error_create_folder' => 'Error creating the folder.',
+    'success_create_file' => 'File created successfully.',
+    'error_create_file' => 'Error creating the file.',
+
+    // Eliminación
+    'success_delete' => 'Item deleted successfully.',
+    'error_delete' => 'Error deleting the item.',
+
+    // Notificaciones (opcional, si usas notificaciones avanzadas)
+    'notification_success' => 'Success',
+    'notification_error' => 'Error',
+    'notification_info' => 'Info',
+
+    // Mensajes adicionales si es necesario
+    // Añade más claves según las necesidades de tu aplicación
 ];
+?>
 
