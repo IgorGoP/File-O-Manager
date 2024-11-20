@@ -1,8 +1,8 @@
-File OManager
+File-O-Manager
 Project Description
-File OManager is an open and flexible file management solution that aims to address the limitations of many existing solutions in terms of accessibility, functionality, and cost. This project aims to facilitate efficient and secure file management, also offering users the ability to customize and expand it according to their needs.
+File-O-Manager is an open and flexible file management solution that aims to address the limitations of many existing solutions in terms of accessibility, functionality, and cost. This project aims to facilitate efficient and secure file management, also offering users the ability to customize and expand it according to their needs.
 
-File OManager offers an attractive alternative for both those seeking a free option and those wanting advanced features and professional support through a commercial scheme. This hybrid approach allows the software to be accessible to everyone, regardless of their resources or needs.
+File-O-Manager offers an attractive alternative for both those seeking a free option and those wanting advanced features and professional support through a commercial scheme. This hybrid approach allows the software to be accessible to everyone, regardless of their resources or needs.
 
 Key Features
 File Upload and Download: Quickly and securely upload and download files.
@@ -15,12 +15,12 @@ Database: MariaDB to store information on users, permissions, and files.
 Frontend: HTML, CSS, JavaScript.
 Server: Debian with Apache.
 Installation
-To start using File OManager, follow these steps:
+To start using File-O-Manager, follow these steps:
 
 Clone the Repository:
 bash
 Copiar código
-git clone https://github.com/IgorGoP/File-OManager.git
+git clone https://github.com/IgorGoP/File-O-Manager.git
 Set Up the Environment:
 Ensure you have an Apache server with PHP and MariaDB configured.
 Configure the environment files in /config/ to set up the database connections.
@@ -42,13 +42,13 @@ The project structure is as follows:
 License
 This project is licensed under the MIT License, with additional terms for commercial use and donation acceptance. This means that anyone can use, modify, and distribute the software as long as they include the original license and adhere to the following additional terms:
 
-Free and Paid Schemes: File OManager has a free version with basic features and a paid version with advanced features.
+Free and Paid Schemes: File-O-Manager has a free version with basic features and a paid version with advanced features.
 Donation Acceptance: Voluntary donations are accepted to support project development.
 Revenue Sharing: If other developers or companies generate revenue from using the code, they must share a percentage of that revenue with the original author.
 For more details, refer to the LICENSE.md file.
 
 Contributing
-Contributions are welcome. If you wish to contribute to the development of File OManager, follow these steps:
+Contributions are welcome. If you wish to contribute to the development of File-O-Manager, follow these steps:
 
 Fork the Repository.
 Create a Branch for Your Feature (git checkout -b feature/NewFeature).
@@ -59,4 +59,4 @@ Contact
 For questions or additional assistance, you can contact the project creator through their GitHub profile: https://github.com/IgorGoP
 
 Project Link
-The project is published on GitHub and can be accessed at the following link: https://github.com/IgorGoP/File-OManager
+The project is published on GitHub and can be accessed at the following link: https://github.com/IgorGoP/File-O-Manager
