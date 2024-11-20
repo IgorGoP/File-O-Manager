@@ -1,4 +1,4 @@
-File OManager Installation Guide
+File-O-Manager Installation Guide
 
 System Requirements
 - Web Server: LAMP (Linux, Apache, MySQL/MariaDB, PHP).
@@ -18,7 +18,7 @@ Step 1: Prepare the Server Environment
 
 Step 2: Download the Project
 1. Download the Project:
-   Download the latest release from the GitHub File-OManager repository: https://github.com/IgorGoP/File-OManager
+   Download the latest release from the GitHub File-O-Manager repository: https://github.com/IgorGoP/File-O-Manager
 
 2. Unzip into the Web Directory:
    Extract the files to /var/www/html/FileOManager/
@@ -37,7 +37,7 @@ Step 3: Create the Database
    GRANT ALL PRIVILEGES ON your_database.* TO 'your_user'@'localhost';
    FLUSH PRIVILEGES;
 
-Step 4: Initial Configuration of File-OManager
+Step 4: Initial Configuration of File-O-Manager
 - Open your browser and go to:
   http://your_ip_address/FileOManager/index.php
 - Complete the database connection details (using localhost as the server).
