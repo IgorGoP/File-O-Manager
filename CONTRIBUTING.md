@@ -1,6 +1,6 @@
-Support the Development of File-OManager
+Support the Development of File-O-Manager
 
-File-OManager is an Open Source project developed and maintained by a single developer. This project provides a simple and effective file manager for web environments, but maintaining and improving it requires time and resources. If File-OManager has been useful to you, please consider supporting its development with a donation.
+File-O-Manager is an Open Source project developed and maintained by a single developer. This project provides a simple and effective file manager for web environments, but maintaining and improving it requires time and resources. If File-O-Manager has been useful to you, please consider supporting its development with a donation.
 
 Your contributions will help ensure that the project remains active and continues to improve. Here’s how your donations can make a difference:
 
@@ -13,11 +13,11 @@ New features and improvements: With your support, I can dedicate more time to de
 Enhanced file permission management.
 Performance optimization for large files.
 New integrations with cloud storage services.
-Security and regular updates: Donations allow me to conduct regular security audits, fix vulnerabilities quickly, and ensure that File-OManager stays secure and up to date.
+Security and regular updates: Donations allow me to conduct regular security audits, fix vulnerabilities quickly, and ensure that File-O-Manager stays secure and up to date.
 
 Support and documentation: Contributions will also enable me to dedicate time to improving documentation and providing better support for users and developers.
 
-Your contribution supports Open Source: By donating, you're not only supporting File-OManager but also the broader Open Source movement, enabling free tools and software to thrive and benefit everyone.
+Your contribution supports Open Source: By donating, you're not only supporting File-O-Manager but also the broader Open Source movement, enabling free tools and software to thrive and benefit everyone.
 
 How will donations be used?
 
@@ -34,7 +34,7 @@ Every donation, no matter the size, makes a significant difference and helps kee
 
 Contributing
 
-If you can’t contribute with code or documentation, you can still support the project by donating. File-OManager is maintained by a single developer, and your support is crucial for keeping the project active and improving it.
+If you can’t contribute with code or documentation, you can still support the project by donating. File-O-Manager is maintained by a single developer, and your support is crucial for keeping the project active and improving it.
 
 PayPal (for one-time donations)
 GitHub Sponsors (for monthly support)
@@ -42,11 +42,11 @@ Every contribution is highly appreciated!
 
 Thank You for Your Support
 
-Maintaining and improving File-OManager is a challenging but rewarding task. Your donations directly support the growth and sustainability of the project, and I am incredibly grateful for your support. With your help, File-OManager can continue to evolve and provide a valuable tool for everyone.
+Maintaining and improving File-O-Manager is a challenging but rewarding task. Your donations directly support the growth and sustainability of the project, and I am incredibly grateful for your support. With your help, File-O-Manager can continue to evolve and provide a valuable tool for everyone.
 
-Apoya el desarrollo de File-OManager
+Apoya el desarrollo de File-O-Manager
 
-File-OManager es un proyecto Open Source desarrollado y mantenido por un solo desarrollador. Este proyecto proporciona un administrador de archivos simple y efectivo para entornos web, pero su mantenimiento y mejora requieren tiempo y recursos. Si File-OManager te ha sido útil, considera apoyar su desarrollo con una donación.
+File-O-Manager es un proyecto Open Source desarrollado y mantenido por un solo desarrollador. Este proyecto proporciona un administrador de archivos simple y efectivo para entornos web, pero su mantenimiento y mejora requieren tiempo y recursos. Si File-O-Manager te ha sido útil, considera apoyar su desarrollo con una donación.
 
 Tus contribuciones ayudarán a garantizar que el proyecto se mantenga activo y continúe mejorando. Aquí te explico cómo tus donaciones pueden marcar la diferencia:
 
@@ -59,11 +59,11 @@ Nuevas funciones y mejoras: Con tu apoyo, podré dedicar más tiempo a desarroll
 Mejor gestión de permisos de archivos.
 Optimización del rendimiento para archivos grandes.
 Nuevas integraciones con servicios de almacenamiento en la nube.
-Seguridad y actualizaciones regulares: Las donaciones me permitirán realizar auditorías de seguridad regulares, corregir vulnerabilidades rápidamente y asegurar que File-OManager siga siendo seguro y actualizado.
+Seguridad y actualizaciones regulares: Las donaciones me permitirán realizar auditorías de seguridad regulares, corregir vulnerabilidades rápidamente y asegurar que File-O-Manager siga siendo seguro y actualizado.
 
 Soporte y documentación: Las contribuciones también me permitirán dedicar tiempo a mejorar la documentación y proporcionar mejor soporte para usuarios y desarrolladores.
 
-Tu contribución apoya al software libre: Al donar, no solo apoyas a File-OManager, sino también al movimiento de Open Source, permitiendo que las herramientas y software gratuitos sigan creciendo y beneficiando a todos.
+Tu contribución apoya al software libre: Al donar, no solo apoyas a File-O-Manager, sino también al movimiento de Open Source, permitiendo que las herramientas y software gratuitos sigan creciendo y beneficiando a todos.
 
 ¿Cómo se usarán las donaciones?
 
@@ -80,7 +80,7 @@ Cada donación, sin importar el monto, marca una gran diferencia y ayuda a mante
 
 Contribuciones
 
-Si no puedes contribuir con código o documentación, aún puedes apoyar el proyecto mediante una donación. File-OManager es mantenido por un solo desarrollador, y tu apoyo es crucial para mantener el proyecto activo y mejorarlo.
+Si no puedes contribuir con código o documentación, aún puedes apoyar el proyecto mediante una donación. File-O-Manager es mantenido por un solo desarrollador, y tu apoyo es crucial para mantener el proyecto activo y mejorarlo.
 
 PayPal (para donaciones únicas)
 GitHub Sponsors (para apoyo mensual)
@@ -88,4 +88,4 @@ GitHub Sponsors (para apoyo mensual)
 
 Gracias por tu Apoyo
 
-Mantener y mejorar File-OManager es una tarea desafiante pero gratificante. Tus donaciones apoyan directamente el crecimiento y la sostenibilidad del proyecto, y estoy increíblemente agradecido por tu apoyo. Con tu ayuda, File-OManager podrá seguir evolucionando y ofreciendo una herramienta valiosa para todos.
+Mantener y mejorar File-O-Manager es una tarea desafiante pero gratificante. Tus donaciones apoyan directamente el crecimiento y la sostenibilidad del proyecto, y estoy increíblemente agradecido por tu apoyo. Con tu ayuda, File-O-Manager podrá seguir evolucionando y ofreciendo una herramienta valiosa para todos.
