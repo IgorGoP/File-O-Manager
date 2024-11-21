@@ -60,13 +60,4 @@ Step 6: Troubleshooting
    - Make sure the MySQL/MariaDB service is running:
      sudo systemctl status mariadb
 
-Step 7: Security
 
-1. Change Passwords:
-   - Change the database user's password to a more secure one once you verify everything is working correctly.
-
-2. Disable Errors in Production:
-   - Edit the PHP configuration file to disable error display:
-     ini_set('display_errors', 0);
-     ini_set('display_startup_errors', 0);
-     error_reporting(0);
